@@ -36,6 +36,19 @@ public class LiveStreamTest {
         assertNotNull(stream);
         assertEquals("Building REST APIs with Spring Boot", stream.getTitle(), "Title is incorrect");
 
+    }
+
+    @Test
+    void create_new_record_live_stream() {
+        LiveStream stream = new LiveStream(UUID.randomUUID().toString(), "Building REST APIs with Spring Boot", """
+                    we are developing this program to write and test rest apis in java spring.
+                """, "https://www.github.com/hamidashhad2"
+                ,LocalDateTime.of(2022,8, 22,10,51,11)
+                ,LocalDateTime.of(2022,8, 23,10,51,11));
+        assertNotNull(stream);
+        assertEquals("Building REST APIs with Spring Boot", stream.title(), "Title is incorrect");
+        assertTrue(stream.getClass().isRecord());
+        assertEquals(6, stream.getClass().getRecordComponents().length);
 
     }
 
